@@ -109,32 +109,32 @@ export default function Login() {
                 onClick={() => handleQuickLogin("admin@vendorbridge.com")}
                 className="p-3 bg-slate-50 hover:bg-blue-50/60 border border-slate-200/80 rounded-xl text-left transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Shlok</div>
-                <div className="text-[11px] font-medium text-slate-400">Admin · admin / 123</div>
+                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Admin</div>
+                <div className="text-[11px] font-medium text-slate-400">admin@vendorbridge.com / 123</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin("officer@vendorbridge.com")}
                 className="p-3 bg-slate-50 hover:bg-blue-50/60 border border-slate-200/80 rounded-xl text-left transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Harshil</div>
-                <div className="text-[11px] font-medium text-slate-400">Officer · officer / 123</div>
+                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Procurement Officer</div>
+                <div className="text-[11px] font-medium text-slate-400">officer@vendorbridge.com / 123</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin("manager@vendorbridge.com")}
                 className="p-3 bg-slate-50 hover:bg-blue-50/60 border border-slate-200/80 rounded-xl text-left transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Krish</div>
-                <div className="text-[11px] font-medium text-slate-400">Manager · manager / 123</div>
+                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Manager</div>
+                <div className="text-[11px] font-medium text-slate-400">manager@vendorbridge.com / 123</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin("vendor@techsupplies.com")}
                 className="p-3 bg-slate-50 hover:bg-blue-50/60 border border-slate-200/80 rounded-xl text-left transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Jay</div>
-                <div className="text-[11px] font-medium text-slate-400">Vendor · vendor / 123</div>
+                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600">Vendor</div>
+                <div className="text-[11px] font-medium text-slate-400">vendor@techsupplies.com / 123</div>
               </button>
             </div>
           </div>
