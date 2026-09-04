@@ -1,9 +1,23 @@
 import PDFDocument from "pdfkit";
 
+function formatIndiaDateTime(date = new Date()) {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  }).format(date) + " IST";
+}
+
 export async function generateInvoicePDF(data) {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({ margin: 40, size: "A4" });
     const chunks = [];
+    const generatedAtIndia = formatIndiaDateTime();
 
     doc.on("data", (chunk) => chunks.push(chunk));
     doc.on("end", () => resolve(Buffer.concat(chunks)));
@@ -42,7 +56,7 @@ export async function generateInvoicePDF(data) {
       .fillColor(darkTextColor)
       .text(`Invoice No: ${data.invoiceNumber || "N/A"}`, 350, 80, { width: 205, align: "right", font: "Helvetica-Bold" })
       .fillColor(mutedTextColor)
-      .text(`Date: ${data.issuedAt ? new Date(data.issuedAt).toLocaleDateString("en-IN") : "N/A"}`, 350, 95, { width: 205, align: "right", font: "Helvetica" })
+      .text(`Generated: ${generatedAtIndia}`, 350, 95, { width: 205, align: "right", font: "Helvetica" })
       .fillColor("#059669")
       .text(`Status: ${data.status || "GENERATED"}`, 350, 110, { width: 205, align: "right", font: "Helvetica-Bold" });
 

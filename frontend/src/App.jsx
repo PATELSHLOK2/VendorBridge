@@ -141,8 +141,21 @@ function ProtectedLayout() {
           </ul>
         </div>
 
-        {/* Sidebar Footer Logout */}
+        {/* Sidebar Account & Logout */}
         <div className="p-3 border-t border-slate-100">
+          <div className="flex items-center space-x-3 px-2 py-2 mb-1">
+            <div className="w-9 h-9 shrink-0 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-blue-500/20">
+              {initials}
+            </div>
+            <div className="min-w-0">
+              <span className="block truncate text-xs font-bold text-slate-900">
+                {user.firstName} {user.lastName}
+              </span>
+              <span className="block truncate text-[10px] font-medium text-slate-400">
+                {roleDisplay}
+              </span>
+            </div>
+          </div>
           <button
             onClick={logout}
             className="flex items-center justify-center space-x-2 w-full px-3 py-2 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors text-xs font-medium"
