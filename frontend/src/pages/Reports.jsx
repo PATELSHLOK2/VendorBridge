@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
-import { api, showToast } from "../services/api.js";
+import { api, apiUrl, showToast } from "../services/api.js";
 import { formatCurrency } from "../services/utils.js";
 import {
   CreditCard,
@@ -58,7 +58,7 @@ export default function Reports() {
     try {
       showToast("Preparing CSV report...", "info");
       const token = api.getToken();
-      const response = await fetch("/api/reports/export?format=csv", {
+      const response = await fetch(apiUrl("/api/reports/export?format=csv"), {
         headers: { Authorization: `Bearer ${token}` },
       });
       const csvText = await response.text();

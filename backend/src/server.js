@@ -30,6 +30,14 @@ const PORT = parseInt(process.env.PORT || "4000", 10);
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(async (_req, _res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 // API Endpoints
 app.use("/api/auth", authRoutes);
@@ -83,7 +91,12 @@ function startServer(portToUse) {
   });
 }
 
-// Connect to MongoDB, then start server
-connectDB().then(() => {
-  startServer(PORT);
-});
+// Vercel invokes the exported app as a serverless function. Locally, keep the
+// existing standalone server behavior for `npm start` and `npm run dev`.
+if (!process.env.VERCEL) {
+  connectDB().then(() => {
+    startServer(PORT);
+  });
+}
+
+export default app;

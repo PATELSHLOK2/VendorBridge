@@ -11,10 +11,8 @@ import "./models/Invoice.js";
 import "./models/ActivityLog.js";
 import "./models/OTP.js";
 
-let isConnected = false;
-
 export async function connectDB() {
-  if (isConnected) return;
+  if (mongoose.connection.readyState === 1) return;
 
   const uri = process.env.MONGODB_URI;
   if (!uri) {
@@ -25,10 +23,9 @@ export async function connectDB() {
     await mongoose.connect(uri, {
       dbName: process.env.MONGODB_DB || "vendorbridge",
     });
-    isConnected = true;
     console.log("✅ Connected to MongoDB");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
-    process.exit(1);
+    throw err;
   }
 }

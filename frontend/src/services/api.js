@@ -1,4 +1,9 @@
 const TOKEN_KEY = "vb_token";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+
+export function apiUrl(path) {
+  return API_BASE_URL ? `${API_BASE_URL}${path}` : path;
+}
 
 export const api = {
   getToken() {
@@ -27,7 +32,7 @@ export const api = {
     }
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(apiUrl(url), {
         ...options,
         headers,
       });
