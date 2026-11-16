@@ -3,14 +3,13 @@ services:
     name: vendorbridge
     env: node
     plan: free
-    buildCommand: npm install && cd frontend && npm install && npm run build
+    rootDir: .
+    buildCommand: npm install && npm install --prefix frontend && npm run build --prefix frontend
     startCommand: node backend/src/server.js
     envVars:
       - key: MONGODB_URI
-        value: mongodb+srv://patelshlok1411_db_user:rooyfSQ2y696yHso@cluster0.syulx6u.mongodb.net/vendorbridge?retryWrites=true&w=majority
+        value: "mongodb+srv://patelshlok1411_db_user:rooyfSQ2y696yHso@cluster0.syulx6u.mongodb.net/vendorbridge?retryWrites=true&w=majority"
       - key: JWT_SECRET
-        value: vJ0p8yR7Z+UfXw8lD1kQh/PZ6vM8N5B3+t8Y0u2m4K8=
+        value: "vJ0p8yR7Z+UfXw8lD1kQh/PZ6vM8N5B3+t8Y0u2m4K8="
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 4000
