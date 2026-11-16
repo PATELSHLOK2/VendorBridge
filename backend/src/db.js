@@ -22,10 +22,13 @@ export async function connectDB() {
   try {
     await mongoose.connect(uri, {
       dbName: process.env.MONGODB_DB || "vendorbridge",
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 30000,
     });
     console.log("✅ Connected to MongoDB");
   } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
+    console.error("❌ MongoDB connection error:", err.message);
     throw err;
   }
 }

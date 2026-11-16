@@ -91,12 +91,17 @@ function startServer(portToUse) {
   });
 }
 
-// Vercel invokes the exported app as a serverless function. Locally, keep the
-// existing standalone server behavior for `npm start` and `npm run dev`.
+// Start server — connect to DB first, then listen.
+// On failure, log the error and exit with code 1 so Render/process managers restart.
 if (!process.env.VERCEL) {
-  connectDB().then(() => {
-    startServer(PORT);
-  });
+  connectDB()
+    .then(() => {
+      startServer(PORT);
+    })
+    .catch((err) => {
+      console.error("❌ Failed to connect to MongoDB. Server will not start.", err.message);
+      process.exit(1);
+    });
 }
 
 export default app;
